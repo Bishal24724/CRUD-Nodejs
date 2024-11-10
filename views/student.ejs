@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Students</title>
+  </head>
+  <body>
+    <h1>Student List</h1>
+    <% if (successMessage && successMessage.length > 0) { %>
+        <div class="alert alert-success"><%= successMessage %></div>
+      <% } %>
+    <button type="button" onclick="window.location.href='/'">Back</button>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+      <% student.forEach(student => { %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.name %></td>
+          <td><%= student.age %></td>
+          <td><%= student.email %></td>
+          <td><%= student.address %></td>
+          <td><a href="/edit/<%= student.id %>"><button>Edit</button></a></td>
+       
+          <td>
+            <form action="/delete/<%= student.id %>" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('do you want to delete')">Delete</button>
+            </form>
+          </td>
+          
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
